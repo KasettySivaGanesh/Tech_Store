@@ -8,11 +8,11 @@ class Settings(BaseSettings):
     """
 
     # Database
-    DATABASE_URL: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/orders_db"
-    SYNC_DATABASE_URL: str = "postgresql://postgres:postgres@localhost:5432/orders_db"
+    DATABASE_URL: str = "postgresql+asyncpg://postgres:postgres@postgres_db:5432/orders_db"
+    SYNC_DATABASE_URL: str = "postgresql://postgres:postgres@postgres_db:5432/orders_db"
 
     # Inter-service communication
-    PRODUCT_SERVICE_URL: str = "http://localhost:5001"
+    PRODUCT_SERVICE_URL: str = "http://productservice:5001"
 
     # Service identity
     SERVICE_NAME: str = "order-service"

@@ -1,4 +1,4 @@
-ARG DOTNET_VERSION=9.0
+ARG DOTNET_VERSION=8.0
 
 FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION} AS builder
 
@@ -12,7 +12,7 @@ COPY . .
 
 RUN dotnet publish -c Release -o out --no-restore
 
-FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION}
+FROM mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION}
 
 WORKDIR /app
 

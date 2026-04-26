@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const productApi = axios.create({
-  baseURL: import.meta.env.VITE_PRODUCT_API_URL || 'http://localhost:5001',
+  baseURL: '',
   headers: { 'Content-Type': 'application/json' },
   timeout: 10000,
 });
