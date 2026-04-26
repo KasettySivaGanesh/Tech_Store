@@ -1,0 +1,44 @@
+services:
+  database:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    networks:
+      - techstore_nw
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      retries: 5
+    container_name: postgres_db
+  productservice:
+    image: productservice:latest
+    ports:
+      - "5001:5001"
+    networks:
+      - techstore_nw
+    container_name: productservice
+    depends_on:
+      database:
+        condition: service_healthy
+        
+  orderservice:
+    image: orderservice:latest
+    ports:
+      - "5002:5002"
+    networks:
+      - techstore_nw
+    container_name: orderservice
+    depends_on:
+      - productservice
+  frontend:
+    image: frontend:latest
+    ports:
+      - "80:80"
+    networks:
+      - techstore_nw
+    container_name: frontend
+    depends_on:
+      - productservice
+      - orderservice
+networks:
+  techstore_nw:
